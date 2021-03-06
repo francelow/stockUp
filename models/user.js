@@ -45,6 +45,15 @@ class User {
     return db.collection('Users').updateOne({_id: new mongodb.ObjectId(this._id)}, {$set: {cart: {items: updatedCartItems}}});
   }
 
+  addOrder(){
+    const db = getDb();
+    return db.collection('Orders').insertOne(this.cart)
+    .then(result => {
+      this.cart = {items: []};
+      return db.collection('Users').updateOne({_id: new mongodb.ObjectId(this._id)}, {$set: {cart: {items: []}}});
+    });
+  }
+
   getCart(){
     const db = getDb();
     const productIds = this.cart.items.map(i => {
