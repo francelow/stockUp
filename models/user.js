@@ -38,6 +38,24 @@ class User {
     return db.collection('Users').updateOne({_id: new mongodb.ObjectId(this._id)}, {$set: {cart: updatedCart}});
   }
 
+  getCart(){
+    const db = getDb();
+    const productIds = this.cart.items.map(i => {
+      return i.productId;
+    })
+    return db.collection('Catalogue').find({_id: {$in: productIds}}).toArray()
+    .then(products => {
+      return products.map(prod => {
+        return {
+          ...prod, 
+          quantity: this.cart.items.find(item => {
+            return item.productId.toString() === prod._id.toString();
+          }).quantity
+        };
+      });
+    });
+  }
+
   static findById(userId){
     const db = getDb();
     return db.collection('Users').findOne({_id: new mongodb.ObjectId(userId)})
