@@ -17,7 +17,7 @@ class User {
     
   }
 
-  addCart(product){
+  addItemToCart(product){
     const cartProductIndex = this.cart.items.findIndex(cart_prod => {
       return cart_prod.productId.toString() === product._id.toString();  
     });
@@ -36,6 +36,13 @@ class User {
     };
     const db = getDb();
     return db.collection('Users').updateOne({_id: new mongodb.ObjectId(this._id)}, {$set: {cart: updatedCart}});
+  }
+  deleteItemFromCart(productId){
+    const updatedCartItems = this.cart.items.filter(item => {
+      return item.productId.toString() !== productId.toString();
+    });
+    const db = getDb();
+    return db.collection('Users').updateOne({_id: new mongodb.ObjectId(this._id)}, {$set: {cart: {items: updatedCartItems}}});
   }
 
   getCart(){
