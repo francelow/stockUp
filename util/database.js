@@ -22,7 +22,15 @@ const getDB = () => {
   }
   throw('No database found!');
 }
+const closeDBConnection = () =>{
+  try{
+    MongoClient.close();    
+  }catch(err){
+      throw err;
+  }    
+};
 
 exports.mongoConnect = mongoConnect;
 exports.getDB = getDB;
+exports.closeDBConnection = closeDBConnection;
 

@@ -1,5 +1,6 @@
 const mongodb = require('mongodb');
 const getDb = require('../util/database').getDB;
+const Validator = require("validatorjs");
 
 class Product {
   constructor(title, price, description, imageUrl, id, userId) {
@@ -10,6 +11,18 @@ class Product {
     this._id = id ? new mongodb.ObjectId(id) : null; //If id exists -> create ObjectId obj, else null
     this.userId = userId;
   }
+
+  isValid(){
+		const rules = {
+			title: 	     'required|string',
+			price:       'required|integer',
+			description: 'required|string',
+			imageUrl:    'required|string',
+			userId:      'required|string',
+		}
+		const validation = new Validator(this, rules);
+		return validation.passes();		
+	};	
 
   save() {
     const db = getDb();
@@ -23,7 +36,7 @@ class Product {
     }
     return dbOperation
       .then(result => {
-        console.log(result);
+        console.log(result.ops);
       })
       .catch(err => {
         console.log(err);
