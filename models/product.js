@@ -22,10 +22,11 @@ class Product {
 		}
 		const validation = new Validator(this, rules);
 		return validation.passes();		
-	};	
-
+	};
+  
   save() {
     const db = getDb();
+    //console.log(db); 
     let dbOperation; //Either updateOne or insertOne
     if (this._id) {
       // Update the product if this product_id already exists
