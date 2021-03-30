@@ -15,7 +15,7 @@ class Product {
   isValid(){
 		const rules = {
 			title: 	     'required|string',
-			price:       'required|integer',
+			price:       'required|string',
 			description: 'required|string',
 			imageUrl:    'required|string',
 			userId:      'required|string',

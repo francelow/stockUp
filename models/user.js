@@ -1,15 +1,24 @@
 const mongodb = require('mongodb');
 const getDb = require('../util/database').getDB; 
-
+const Validator = require("validatorjs");
 
 class User {
   constructor(username, email, cart, id){
     this.username = username;
     this.email = email;
-    this.cart = cart; //items: []
+    this.cart = cart; //{items:[]}
     this._id = id;
   }
 
+  isValid(){
+		const rules = {
+			username: 'required|string',
+			email:    'required|string',
+			_id:      'required|string'
+		}
+		const validation = new Validator(this, rules);
+		return validation.passes();		
+	};
 
   save() {
     const db = getDb();

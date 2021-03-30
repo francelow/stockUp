@@ -53,8 +53,8 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-  console.log("LOOK OVER HERE!!");
-  console.log(req);
+  //console.log("LOOK OVER HERE!!");
+  //console.log(req);
   req.user.getCart()
   .then(products => {
     res.render('shop/cart', {
@@ -84,8 +84,8 @@ exports.postCart = (req, res, next) => {
 
 exports.postCartDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
-  console.log("WATCH THISSSSSSSSSSSSSSSS");
-  console.log(req.body);
+  //console.log("WATCH THISSSSSSSSSSSSSSSS");
+  //console.log(req.body);
   req.user
     .deleteItemFromCart(prodId)
     .then(result => {
