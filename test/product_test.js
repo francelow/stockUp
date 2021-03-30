@@ -3,7 +3,7 @@ const request = require('request');
 const Product = require('../models/product');
 
 var myurl = 'http://localhost:3000/admin';
-describe('Testing the Product API', function(){
+describe('Testing the Product model', function(){
     /*
     it('POST - Add Product', function(done){
         let newProduct = new Product( "TGIF party", 22.00, "Hassle-free party package to enjoy your Friday night","https://i.ibb.co/pW5bG9J/TGIF.jpg" , null, '603eeae6de09a9e8e15b35cd');
@@ -52,7 +52,39 @@ describe('Testing the Product API', function(){
       
     }); */
     
+    /*
+    it('GET - Get Product by ID', function(done){
+        //Product: Chobani Yogurt Pouches
+        let productID = "6046ada3923e965550fb282e"; //MongoDB assigned ID
+        request.get({
+            headers: {'content-type': 'application/json'},
+            url: 'http://localhost:3000/products/'+productID,
+        }, function(error, response, body){
 
+                if (error) console.dir(error);
+                assert.strictEqual(body.includes("Chobani Yogurt Pouches"), true);
+                done();
+        });
+      
+    }); */
+    /*
+    it('GET - Get All Products', function(done){
+        request.get({
+            headers: {'content-type': 'application/json'},
+            url: 'http://localhost:3000/products',
+        }, function(error, response, body){
+                console.log(body);
+                //Coca-Cola Party Pack, Netflix-N-Chill Ben & Jerry Special, Fries & Nuggets Combo, Cheeseburger, Oatmeal cups  are the main products, the others are mutable.
+                var condition = body.includes("603f0972fe19b255c03f87ec") && body.includes("603f09c9fe19b255c03f87ed") && body.includes("603f0a0cfe19b255c03f87ee") && body.includes("603f0d0ffe19b255c03f87ef") && body.includes("6046aac7d301e12948845bd0");
+                if (error) console.dir(error);
+                assert.strictEqual(condition, true);
+                done();
+        });
+      
+    });*/
+
+    
+    
 
     
 });

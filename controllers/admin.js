@@ -61,7 +61,7 @@ exports.getEditProduct = (req, res, next) => {
 
 exports.postEditProduct = (req, res, next) => {
   console.log("See here!!");
-  console.log(req.body);
+  console.log(req.user);
   var prodId = 0;
   if (req.body._id == null){
     prodId = req.body.productId;
@@ -73,13 +73,15 @@ exports.postEditProduct = (req, res, next) => {
   const updatedPrice = req.body.price;
   const updatedImageURL = req.body.imageUrl;
   const updatedDescription = req.body.description;
+  const updatedUserID = req.user;
 
   const product = new Product(
     updatedTitle,
     updatedPrice,
     updatedDescription,
     updatedImageURL,
-    new ObjectId(prodId)
+    new ObjectId(prodId),
+    updatedUserID
   );
   product
     .save()

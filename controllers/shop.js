@@ -32,8 +32,10 @@ exports.getProduct = (req, res, next) => {
         pageTitle: product.title,
         path: '/products'
       });
+     
     })
-    .catch(err => console.log(err));
+    
+
 };
 
 exports.getIndex = (req, res, next) => {
@@ -51,6 +53,8 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
+  console.log("LOOK OVER HERE!!");
+  console.log(req);
   req.user.getCart()
   .then(products => {
     res.render('shop/cart', {
@@ -64,6 +68,8 @@ exports.getCart = (req, res, next) => {
 
 exports.postCart = (req, res, next) => {
   const prodId = req.body.productId;
+  //console.log("WATCH THISSSSSSSSSSSSSSSS");
+  //console.log(req.body);
   Product.findById(prodId)
   .then(product => {
     return req.user.addItemToCart(product);
@@ -78,6 +84,8 @@ exports.postCart = (req, res, next) => {
 
 exports.postCartDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
+  console.log("WATCH THISSSSSSSSSSSSSSSS");
+  console.log(req.body);
   req.user
     .deleteItemFromCart(prodId)
     .then(result => {
@@ -91,6 +99,8 @@ exports.postOrder = (req, res, next) => {
   req.user
     .addOrder()
     .then(result => {
+      console.log('Order Sent!');
+      res.status(200);
       res.redirect('/orders');
     })
     .catch(err => console.log(err));

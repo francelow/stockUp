@@ -18,10 +18,13 @@ router.get('/products/:productId', shopController.getProduct);
 // http://localhost:3000/cart => GET
 router.get('/cart', shopController.getCart);
 
+// http://localhost:3000/cart => POST
 router.post('/cart', shopController.postCart);
 
+// http://localhost:3000/cart-delete-item => POST
 router.post('/cart-delete-item', shopController.postCartDeleteProduct);
 
+// http://localhost:3000/create-order => POST
 router.post('/create-order', shopController.postOrder);
 // http://localhost:3000/orders => GET
 router.get('/orders', shopController.getOrders);
