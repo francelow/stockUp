@@ -1,12 +1,12 @@
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
-let db;
+var db;
 const uri = "mongodb+srv://francois-01:5YlpjoM7D2nxh40c@cluster0.qcddy.mongodb.net/stockUpDB?retryWrites=true&w=majority";
 const mongoConnect = (cb) => {
   MongoClient.connect(uri)
-  .then(client => {
+  .then(async client => {
     console.log('Connected!');
-    db = client.db();
+    db = await client.db();
     cb();
 
   })
