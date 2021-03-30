@@ -66,8 +66,8 @@ describe('Testing the Product model', function(){
     }); 
     
     it('POST - Delete Product by ID', function(done){
-        //original product = _id:"6063737ad3945b07282be5d9", title:"Tacos", price:"15.00", description:"5 Authentic Mexican Tacos", imageUrl:"https://s3-eu-west-1.amazonaws.com/uploads.playbaamboozle.com/uploads/images/135571/1606724771_192192", userId:"603eeae6de09a9e8e15b35cd"
-        let deleteProduct = new Product( "", "", "","" , '6063737ad3945b07282be5d9', ""); //Only fill in the 5th param with MongoDB assigned ID
+        //original product = _id:"60637e2169c0fb5cc4596429", title:"Tacos", price:"15.00", description:"5 Authentic Mexican Tacos", imageUrl:"https://s3-eu-west-1.amazonaws.com/uploads.playbaamboozle.com/uploads/images/135571/1606724771_192192", userId:"603eeae6de09a9e8e15b35cd"
+        let deleteProduct = new Product( "", "", "","" , '60637e2169c0fb5cc4596429', ""); //Only fill in the 5th param with MongoDB assigned ID
         request.post({
             headers: {'content-type': 'application/json'},
             url: myurl+'/delete-product',
