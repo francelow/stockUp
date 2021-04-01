@@ -35,7 +35,7 @@ app.use(errorController.get404);
 
 mongoose
   .connect(
-    'mongodb+srv://francois-01:5YlpjoM7D2nxh40c@cluster0.qcddy.mongodb.net/stockUpDB?retryWrites=true', { useUnifiedTopology: true }
+    'mongodb+srv://[username:password]@cluster0.qcddy.mongodb.net/[DB name]?retryWrites=true', { useUnifiedTopology: true }
   )
   .then(result => {
     User.findOne().then(user => {
