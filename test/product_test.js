@@ -1,4 +1,4 @@
-
+/*
 var assert = require('assert');
 const request = require('request');
 const Product = require('../models/product');
@@ -114,4 +114,4 @@ describe('Testing the Product model', function(){
 
     
 });
-
+*/

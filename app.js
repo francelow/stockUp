@@ -2,9 +2,9 @@ const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const errorController = require('./controllers/error');
-const mongoConnect = require('./util/database').mongoConnect;
 const User = require('./models/user');
 
 const app = express();
@@ -20,9 +20,9 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
- User.findById('603eeae6de09a9e8e15b35cd')
+ User.findById('6065db6539d2515d74b2a0d9')
     .then(user => {
-      req.user = new User(user.name, user.email, user.cart, user._id);
+      req.user = user;
       next();
     })
     .catch(err => console.log(err));
@@ -33,6 +33,28 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-mongoConnect(() => {
-  app.listen(3000);
-});
+mongoose
+  .connect(
+    'mongodb+srv://francois-01:5YlpjoM7D2nxh40c@cluster0.qcddy.mongodb.net/stockUpDB?retryWrites=true', { useUnifiedTopology: true }
+  )
+  .then(result => {
+    User.findOne().then(user => {
+      //If no user object is found in db, create a new default user object
+      if(!user){
+        const user = new User({
+          name: 'Tom',
+          email: 'tom@email.com',
+          cart: {
+            items: []
+          }
+        });
+        user.save();
+      }
+    });
+    
+    console.log("Connected!");
+    app.listen(3000);
+  })
+  .catch(err => {
+    console.log(err);
+  });
