@@ -26,6 +26,8 @@
     "mongodb": "3.6.3",
     "mongoose": "^5.12.3",
     "mysql2": "^2.2.5",
+    "nodemailer": "^6.5.0",
+    "nodemailer-sendgrid": "^1.0.3",
     "request": "^2.88.2",
     "sequelize": "^6.5.0",
     "validatorjs": "^3.22.1"

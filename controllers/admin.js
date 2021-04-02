@@ -74,17 +74,20 @@ exports.postEditProduct = (req, res, next) => {
   //const updatedUserID = req.user;
 
   Product.findById(prodId).then(product => {
+    if(product.userId.toString() !== req.user._id.toString()){
+      return res.redirect('/');
+    }
     product.title = updatedTitle;
     product.price = updatedPrice;
     product.description = updatedDescription;
     product.imageUrl = updatedImageURL;
     //product.userId = updatedUserID;
     return product.save()
-  })
-  .then(result => {
-    console.log('Product Updated !');
-      res.status(200);
-      res.redirect('/admin/products');
+    .then(result => {
+      console.log('Product Updated !');
+        res.status(200);
+        res.redirect('/admin/products');
+    })
   })
   .catch(err => console.log(err));
 };
@@ -110,7 +113,7 @@ exports.postDeleteProduct = (req, res, next) => {
   }else{
     prodId = req.body._id;
   }
-  Product.findByIdAndRemove(prodId)
+  Product.deleteOne({_id: prodId, userId: req.user_id})
   .then(() => {
     console.log('Product deleted successfully!');
     res.status(200);

@@ -103,8 +103,8 @@ exports.getCheckout =(req, res, next) => {
     res.render('shop/checkout', {
       path: '/cart',
       pageTitle: 'Checkout',
-      products: products,
-      totalSum:
+      products: products
+      //totalSum:
     });
   })
   .catch(err => console.log(err));
