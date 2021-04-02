@@ -26,10 +26,14 @@ router.post('/cart',authPage, shopController.postCart);
 // http://localhost:3000/cart-delete-item => POST
 router.post('/cart-delete-item',authPage, shopController.postCartDeleteProduct);
 
-router.post('/checkout',authPage, shopController.getCheckout);
+router.get('/checkout',authPage, shopController.getCheckout);
 
-// http://localhost:3000/create-order => POST
-router.post('/create-order',authPage, shopController.postOrder);
+router.get('/checkout/success',authPage, shopController.getCheckoutSuccess);
+
+router.get('/checkout/cancel',authPage, shopController.getCheckout);
+
+/* // http://localhost:3000/create-order => POST
+router.post('/create-order',authPage, shopController.postOrder); */
 
 // http://localhost:3000/orders => GET
 router.get('/orders',authPage, shopController.getOrders);

@@ -30,6 +30,7 @@
     "nodemailer-sendgrid": "^1.0.3",
     "request": "^2.88.2",
     "sequelize": "^6.5.0",
+    "stripe": "^8.141.0",
     "validatorjs": "^3.22.1"
   }
 }
