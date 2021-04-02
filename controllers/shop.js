@@ -8,7 +8,8 @@ exports.getProducts = (req, res, next) => {
       res.render('shop/product-list', {
         prods: products,
         pageTitle: 'All Products',
-        path: '/products'
+        path: '/products',
+        
       });
     })
     .catch(err => {
@@ -91,6 +92,30 @@ exports.postCartDeleteProduct = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
+exports.getCheckout =(req, res, next) => {
+
+  req.user
+  .populate('cart.items.productId')
+  .execPopulate() //return a promise here
+  .then(user => {
+    console.log(user.cart.items);
+    const products = user.cart.items;
+    res.render('shop/checkout', {
+      path: '/cart',
+      pageTitle: 'Checkout',
+      products: products,
+      totalSum:
+    });
+  })
+  .catch(err => console.log(err));
+  res.render('shop/checkout', {
+    path: '/checkout',
+    pageTitle: 'Checkout',
+    orders: orders
+  });
+
+}
+
 exports.postOrder = (req, res, next) => {
   req.user
   .populate('cart.items.productId')
@@ -102,7 +127,7 @@ exports.postOrder = (req, res, next) => {
     });  
     const order = new Order({
       user: {
-        name: req.user.name,
+        email: req.user.email,
         userId: req.user
       },
       products: products

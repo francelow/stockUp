@@ -10,9 +10,7 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postAddProduct = (req, res, next) => {
-  //console.log("OVER HERE!!!");
-  //console.log(req.body);
-  
+
   const title = req.body.title;
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
@@ -61,7 +59,6 @@ exports.getEditProduct = (req, res, next) => {
 };
 
 exports.postEditProduct = (req, res, next) => {
-  console.log("See here!!");
   console.log(req.user);
   var prodId = 0;
   if (req.body._id == null){
@@ -74,14 +71,14 @@ exports.postEditProduct = (req, res, next) => {
   const updatedPrice = req.body.price;
   const updatedImageURL = req.body.imageUrl;
   const updatedDescription = req.body.description;
-  const updatedUserID = req.user;
+  //const updatedUserID = req.user;
 
   Product.findById(prodId).then(product => {
     product.title = updatedTitle;
     product.price = updatedPrice;
     product.description = updatedDescription;
     product.imageUrl = updatedImageURL;
-    product.userId = updatedUserID;
+    //product.userId = updatedUserID;
     return product.save()
   })
   .then(result => {
