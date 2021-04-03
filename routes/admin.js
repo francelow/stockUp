@@ -25,4 +25,6 @@ router.post('/edit-product',authPage, adminController.postEditProduct);
 
 router.post('/delete-product',authPage, adminController.postDeleteProduct);
 
+router.get('/dashboard',authPage, adminController.getDashboard);
+
 module.exports = router;

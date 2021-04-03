@@ -1,0 +1,57 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/solid.min.css">
+</head>
+
+<body>
+   <%- include('../includes/navigation.ejs') %>
+
+    
+    <div class="main-content">
+        <header>
+            <h1>
+                <label for="">
+                    <span class="las la-bars"></span>
+                </label>
+
+                Dashboard
+            </h1>
+        </header>
+
+        <main>
+            <div class="cards">
+                <div class="card-single">
+                    <div>
+                        <h1><%= totalCustomers %></h1>
+                        <span>Customers</span>
+                    </div>
+                    <div>
+                        <span class="las la-users"></span>
+                    </div>
+                </div>
+                <div class="card-single">
+                    <div>
+                        <h1><%= totalOrders %></h1>
+                        <span>Orders</span>
+                    </div>
+                    <div>
+                        <span class="las la-shopping-bag"></span>
+                    </div>
+                </div>
+                <div class="card-single">
+                    <div>
+                        <h1>$<%= totalIncome %></h1>
+                        <span>Revenue</span>
+                    </div>
+                    <div>
+                        <span class="las la-google-wallet"></span>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+        
+
+        
+   
+<%- include('../includes/end.ejs') %>
